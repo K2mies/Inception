@@ -9,10 +9,13 @@ RUN	apk update && apk add mariadb-client \
 	php83-iconv	\
 	php83-json	\
 	php83-ctype	\
-	wget
+	wget		\
+	#curl		\
+	ca-certificates
+	#bash
+
 
 COPY	./conf/www.conf /etc/php83/php-fpm.d/www.conf
-
 RUN	mkdir -p /var/www/wp /var/www/html
 
 COPY	./tools/wordpress-script.sh /usr/local/bin/wordpress-script.sh

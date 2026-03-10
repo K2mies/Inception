@@ -6,7 +6,7 @@ echo	"memory_limit = 512M" >> /etc/php83/php.ini
 cd 	/var/www/html
 
 echo	"==> Downloading Wordpress client (WP-CLI) and  renaming wp-cli.phar to wp..."
-wget	-q htpps://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/bin/wp ||
+wget	-q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/bin/wp ||
 	{
 		echo "failed to download wp-cli.phar"
 		exit 1
