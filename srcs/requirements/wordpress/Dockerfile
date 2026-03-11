@@ -1,4 +1,4 @@
-FROM	alpine:3.20.6
+FROM	alpine:3.22.3
 
 RUN	apk update && apk add mariadb-client \
 	php83		\
@@ -10,10 +10,7 @@ RUN	apk update && apk add mariadb-client \
 	php83-json	\
 	php83-ctype	\
 	wget		\
-	#curl		\
 	ca-certificates
-	#bash
-
 
 COPY	./conf/www.conf /etc/php83/php-fpm.d/www.conf
 RUN	mkdir -p /var/www/wp /var/www/html
