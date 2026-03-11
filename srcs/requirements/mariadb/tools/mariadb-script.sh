@@ -15,8 +15,8 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	mysqld --user=mysql --bootstrap << EOF
 
 
-USE mysql
-FLUSH PRIVILEGES
+USE mysql;
+FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED BY "${MYSQL_ROOT_PASSWORD}";
 CREATE DATABASE ${WORDPRESS_DATABASE_NAME} CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE USER '${WORDPRESS_DATABASE_USER}'@'%' IDENTIFIED BY '${WORDPRESS_DATABASE_USER_PASSWORD}';
