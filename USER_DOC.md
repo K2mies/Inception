@@ -37,7 +37,16 @@ sudo visudo
 ```
 When it opens click "i" and uncomment (delete "#" infront of) %sudo ALL=(ALL:ALL) ALL. Then exit
 
-After this check if group sudo exist with the command: getent group sudo. If no output is given it means that not. So we have to create the group and after add our user in the group: "addgroup sudo", "adduser rhvidste sudo". Where rhvidste is my username and sudo is the group. Now you are good to go to exercise sudo writes with your user.
+After this check if group sudo exist with the command: 
+```
+getent group sudo
+```
+If no output is given it means that not. So we have to create the group and after add our user in the group:
+```bash
+addgroup sudo
+adduser rhvidste sudo
+```
+Where rhvidste is my username and sudo is the group. Now you are good to go to exercise sudo writes with your user.
 
 ### 2. Install ssh
 
