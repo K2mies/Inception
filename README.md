@@ -172,47 +172,40 @@ wordpress -> mariadb
 nginx -> wordpress
 ```
 
+## Volumes
+Volumes store persistent data outside the container filesystem.
 
-
-
-## Section
-  This is a section
-  This project deploys a WordPress infrastructure using Docker containers.
-  - one
-  - two
-  - three
-
-  1. Build containers
-  2. Start services
-  3. Open website
-
-  ```yaml
-  services:
-    nginx:
-  ```
----
-
-# 5. Inline code
-
-Use **single backticks**.
-
-```markdown
-Run `make` to start the containers.
+This project uses two volumes:
 ```
+/home/rhvidste/data/mariadb
+/home/rhvidste/data/wordpress
+```
+This ensures that data remains even if containers are deleted.
 
-### Subsection
-  This is a subsection
-  6. File structure formatting
-  ```
-    inception/
-    ├── Makefile
-    ├── srcs/
-    │   ├── docker-compose.yml
-    │   └── requirements/
-  ```
-#### Smaller subsection
-  This is a smaller subsection
-  [WordPress](https://wordpress.org)
-  This project uses **Docker Compose**.
+## Bind Mounts
+Bind mounts map directories from the host machine into containers.
 
+They are used here to persist database and WordPress files.
 
+## Enviroment Variables
+Sensitive configuration such as database credentials are stored in a .env file rather than hardcoded into Dockerfiles.
+
+This allows the configuration to be changed without rebuilding images.
+
+## Docker vs Virtual Machines
+Virtual Machines run a full operating system for each instance, which consumes more resources.
+
+Docker containers share the host kernel and are therefore:
+- lighter
+- faster to start
+- more efficient
+
+## Security
+The infrastructure uses HTTPS with TLS certificates generated using OpenSSL.
+
+NGINX only allows:
+```
+TLSv1.2
+TLSv1.3
+```
+This ensures encrypted communication between clients and the server.
