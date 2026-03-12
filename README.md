@@ -124,27 +124,27 @@ Make sure /etc/hosts contains:
 
 ## Useful Commands
 Start containers
-```
+```bash
 make
 ```
 Stop containers
-```
+```bash
 make down
 ```
 restart containers
-```
+```bash
 make up
 ```
 Clean containers and volumes
-```
+```bash
 make clean 
 ```
 Clean everything
-```
+```bash
 make fclean
 ```
 full reset
-```
+```bash
 make re
 ```
 
