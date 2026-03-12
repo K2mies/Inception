@@ -1,9 +1,11 @@
 # Inception
 A containerized WordPress infrastructure built with Docker Compose as part of the **42 School Inception project.**
 
-The project demonstrates how to design a small production-like infrastructure using containers, persistent storage, networking, and secure HTTPS communication.
+The project demonstrates how to design a small production-like infrastructure using containers, persistent storage, networking and secure
+HTTPS communication.
+
 ---
-# Project Overview
+## Project Overview
 This project deploys a WordPress website using three Docker containers:
 - NGINX – reverse proxy and HTTPS entrypoint
 - WordPress + PHP-FPM – application server
