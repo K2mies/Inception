@@ -32,6 +32,30 @@ The infrastructure is orchestrated using **Docker Compose** and includes *persis
   MariaDB container
 ```
 
+## Components
+### NGINX
+- Only entry point to the infrastructure
+- Handles HTTPS connections
+- Forwards PHP requests to WordPress via FastCGI
+### WordPress
+- Runs with PHP-FPM
+- Serves the WordPress application
+- Communicates with MariaDB for content storage
+#### MariaDB
+- Stores WordPress data
+- Uses a persistent Docker volume
+
+## Technologies Used
+- Docker
+- Docker Compose
+- NGINX
+- WordPress
+- PHP-FPM
+- MariaDB
+- OpenSSL (for TLS certificates)
+- Alpine Linux
+
+
 ## Section
   This is a section
   This project deploys a WordPress infrastructure using Docker containers.
