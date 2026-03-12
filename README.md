@@ -55,6 +55,64 @@ The infrastructure is orchestrated using **Docker Compose** and includes *persis
 - OpenSSL (for TLS certificates)
 - Alpine Linux
 
+## Project structure
+```
+inception/
+│
+├── Makefile
+├── srcs/
+│   ├── docker-compose.yml
+│   ├── .env
+│   │
+│   └── requirements/
+│       ├── nginx/
+│       │   ├── Dockerfile
+│       │   ├── conf/
+│       │   └── tools/
+│       │
+│       ├── wordpress/
+│       │   ├── Dockerfile
+│       │   ├── conf/
+│       │   └── tools/
+│       │
+│       └── mariadb/
+│           ├── Dockerfile
+│           ├── conf/
+│           └── tools/
+```
+
+## Installation & Usage
+### 1.Clone the repository
+```
+git clone <repo>
+cd inception
+```
+### 2.Create/Configure enviroment variables
+```
+srcs/.env
+```
+**Example Variables.**
+```
+DOMAIN_NAME=rhvidste.42.fr
+
+MYSQL_DATABASE=wordpress_db
+MYSQL_USER=rhvidste
+MYSQL_PASSWORD=*****
+
+WORDPRESS_ADMIN=ross
+WORDPRESS_ADMIN_PASSWORD=*****
+WORDPRESS_ADMIN_EMAIL=admin@rhvidste.42.fr
+```
+### 3.Build and start containers
+```
+make
+```
+This will:
+- create persistent directories
+- build docker images
+- start containers in detached mode
+
+
 
 ## Section
   This is a section
