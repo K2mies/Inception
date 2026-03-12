@@ -241,6 +241,209 @@ First install the graphical system:
 apk update
 apk add xorg-server xf86-video-vesa xf86-input-libinput
 ```
+These provide:
+- Xorg display server
+- generic video driver
+- keyboard/mouse input
+#### 2. Install a lightweight desktop environment
+For Alpine, a very good choice is XFCE.
+
+Install it with:
+```
+apk add xfce4 xfce4-terminal
+```
+
+#### 3. Install a login manager (optional but recommended)
+This gives you a graphical login screen.
+```
+apk add lightdm lightdm-gtk-greeter
+```
+Enable it:
+```
+rc-update add lightdm
+rc-service lightdm start
+```
+#### 4. Enable DBus (required for desktops)
+```
+apk add dbus
+rc-update add dbus
+rc-service dbus start
+```
+#### 5. Start the GUI manually (if not using LightDM)
+```
+startx
+```
+#### 6. Install a web browser
+Example:
+```
+apk add firefox
+```
+or a lighter browser:
+```
+apk add chromium
+```
+#### 7. Reboot
+```
+reboot
+```
+You should now boot into the graphical desktop.
+if you need to boot it from the terminal just type:
+```
+startx
+```
+
+# Project Setup
+
+Clone the repository:
+
+```bash
+git clone <repository_url>
+cd inception
+
+## Configure Environment Variables
+The project uses an .env file located in:
+```bash
+srcs/.env
+```
+This file contains configuration values such as:
+- database credentials
+- WordPress admin account
+- domain name
+Example configuration:
+```
+DOMAIN_NAME=rhvidste.42.fr
+
+MYSQL_DATABASE=wordpress_db
+MYSQL_USER=rhvidste
+MYSQL_PASSWORD=********
+
+WORDPRESS_ADMIN=ross
+WORDPRESS_ADMIN_PASSWORD=********
+WORDPRESS_ADMIN_EMAIL=admin@rhvidste.42.fr
+```
+
+## Configure Domain Name
+get the ip by typing:
+```
+ip a
+```
+then look for something like 
+```
+inet 127.0.0.1/8 scope host lo
+```
+
+Add the following entry to your **/etc/hosts** file:
+```
+sudo nano /etc/hosts
+```
+
+Add this line (replace the ip with the one you found using Ip a):
+```
+127.0.0.1 rhvidste.42.fr
+```
+
+## Build and Start the Infrastructure
+Run:
+```
+make
+```
+This command will:
+
+- Create persistent data directories
+- Build Docker images
+- Start the containers
+
+The services will run in the background.
+
+## Access the Website
+Open your browser and go to:
+( this will reflect what is in your .env variables under domain name)
+```
+https://rhvidste.42.fr
+```
+You may see a security warning due to the self-signed certificate.
+
+Accept the certificate to continue.
+
+## WordPress Login
+The WordPress admin panel is available at:
+```
+https://rhvidste.42.fr/wp-admin
+```
+Login using the credentials defined in the .env file.
+
+## Stopping the Infrastructure
+To stop all containers:
+```
+make down
+```
+## Cleaning the Project
+To remove containers, images, and volumes:
+```
+make clean
+```
+To completely reset the project:
+```
+make fclean
+```
+or to clean and reboot:
+```
+make re
+```
+## Persistent Data
+The project stores data in the following directories:
+```
+/home/<login>/data/mariadb
+/home/<login>/data/wordpress
+```
+
+## To SSH into the host VIM
+```
+root:
+ssh root@192.168.64.2 -p 4241
+
+user:
+ssh rhvidste@192.168.64.2 -p 4241
+```
+
+## to change the port manually
+### Method 1. ( partial change )
+#### 1.
+- Inside the docker-compose.yml 
+- Change the nginx port
+From:
+```
+443:443
+```
+To:
+```
+8443:443
+```
+#### 2.
+```
+docker exec -it wordpress sh
+cd /var/www/html
+wp option update siteurl 'https://rhvidste.42.fr:8443' --allow-root
+wp option update home 'https://rhvidste.42.fr:8443' --allow-root
+exit
+```
+### Method 2. ( Full change )
+#### 1.
+Change the docker-compose.yml port to:
+```
+8443:8443
+```
+Then in nginx.conf have:
+```
+server {
+	listen 8443 ssl;
+	listen [::]:8443 ssl;
+	server_name rhvidste.42.fr;
+```
+
+
+
+
 
 
 
