@@ -69,6 +69,7 @@ services:
     networks:
       - inception
     ports:
+      #- "8443:8443"
       - "443:443"
     volumes:
       - wordpress:/var/www/html
