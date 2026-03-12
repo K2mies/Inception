@@ -119,7 +119,7 @@ sudo apk add vim
 ### 4. neovim
 
 #### 1. Install Required Dependencies
-- LazyVim requires:
+LazyVim requires:
 - neovim
 - git
 - nodejs
@@ -452,8 +452,14 @@ server {
 	server_name rhvidste.42.fr;
 ```
 
-
-
+Then again go into the wordpress container and update the siteurl and home url
+```bash
+docker exec -it wordpress sh
+cd /var/www/html
+wp option update siteurl 'https://rhvidste.42.fr:8443' --allow-root
+wp option update home 'https://rhvidste.42.fr:8443' --allow-root
+exit
+```
 
 
 
