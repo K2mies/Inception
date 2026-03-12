@@ -21,6 +21,8 @@ You must also be able to modify your `/etc/hosts` file.
 
 ## Installations
 
+The following installations are on a virtual machine using Alpine.
+
 ### 1. Install sudo
 ```
 vi /etc/apk/repositories
