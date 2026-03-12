@@ -12,9 +12,9 @@ Before running the project it is recommended you have the following installed:
 - ssh
 - vim
 - neovim
-- Docker
-- Docker Compose
+- Docker / Docker Compose
 - Make
+- GUI
 - A modern web browser
 
 You must also be able to modify your `/etc/hosts` file.
@@ -149,7 +149,7 @@ LazyVim will automatically:
 
 You will see plugins downloading.
 
-### 5. Docker
+### 5. Docker / Docker Compose
 
 - First connect using ssh at terminal: ssh localhost -p 4241
 - Update Alpine:
@@ -192,6 +192,54 @@ sudo addgroup rhvidste docker
 - Installing Docker Compose:
 ```
 sudo apk add docker-cli-compose
+```
+### 6. Make
+#### 1. Install Make
+- Run:
+```
+apk add make
+```
+#### 2. If you get a permission error
+- You need root privileges.
+- Use either:
+```
+sudo apk add make
+```
+- or switch to root:
+```
+su
+apk add make
+```
+#### 3. Verify Installation
+```
+make --version
+```
+- You should see something like:
+```
+GNU Make 4.x
+```
+
+#### 4. Recommended (better for development)
+Most developers install the build tools package which includes make, gcc, and other compilation tools:
+```
+apk add build-base
+```
+This installs:
+
+- make
+- gcc
+- g++
+- musl-dev
+- other build utilities
+
+Very useful for compiling programs or building Neovim plugins.
+
+### 7. GUI
+#### 1. Install Xorg (the display server)
+First install the graphical system:
+```bash
+apk update
+apk add xorg-server xf86-video-vesa xf86-input-libinput
 ```
 
 
