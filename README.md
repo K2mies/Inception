@@ -82,12 +82,12 @@ inception/
 ```
 
 ## Installation & Usage
-### 1.Clone the repository
+### 1. Clone the repository
 ```
 git clone <repo>
 cd inception
 ```
-### 2.Create/Configure enviroment variables
+### 2. Create/Configure enviroment variables
 ```
 srcs/.env
 ```
@@ -103,7 +103,7 @@ WORDPRESS_ADMIN=ross
 WORDPRESS_ADMIN_PASSWORD=*****
 WORDPRESS_ADMIN_EMAIL=admin@rhvidste.42.fr
 ```
-### 3.Build and start containers
+### 3. Build and start containers
 ```
 make
 ```
@@ -111,6 +111,67 @@ This will:
 - create persistent directories
 - build docker images
 - start containers in detached mode
+
+### 4. Access the website
+Open in your browser:
+```
+https://rhvidste.42.fr
+```
+Make sure /etc/hosts contains:
+```
+127.0.0.1 rhvidste.42.fr
+```
+
+## Useful Commands
+Start containers
+```
+make
+```
+Stop containers
+```
+make down
+```
+restart containers
+```
+make up
+```
+Clean containers and volumes
+```
+make clean 
+```
+Clean everything
+```
+make fclean
+```
+full reset
+```
+make re
+```
+
+## Docker Concepts
+### Containers
+Containers package applications and their dependencies into isolated environments that run consistently across systems.
+
+Each service in this project runs in its own container.
+
+## Docker Compose
+Docker Compose allows multiple containers to be defined and run together using a single configuration file (docker-compose.yml).
+
+it manages:
+- container creation
+- networking
+- volumes
+- dependencies
+
+## Docker Networks
+Containers communicate through a custom bridge network.
+
+This allows services to connect using container names:
+```
+wordpress -> mariadb
+nginx -> wordpress
+```
+
 
 
 
