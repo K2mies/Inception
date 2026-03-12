@@ -41,33 +41,33 @@ After this check if group sudo exist with the command: getent group sudo. If no 
 
 ### 2. Install ssh
 
-```
+```bash
 sudo apk update
 sudo apk add nano
 sudo nano /etc/ssh/sshd_config
 ```
 now when it opens uncomment Port and change it into 4241. To save it do CTRL+O and enter. To exit nano do CTRL+X.
-```
+```bash
 sudo vi /etc/ssh/ssh_config
 ```
 Then uncomment the Post and change it into 4241. Now save and exit.
-```
+```bash
 sudo rc-service sshd restart
 ```
 To check if it is listening from 4241 we can see with this command:
-```
+```bash
 netstat -tuln | grep 4241
 ```
 Now go back to VM. Settings. Network. Advanced. Port Forwarding. Click green + and in both ports type "4241". Click OK 2 times.
 
 Open normal terminal to check if it works. type:
-```
+```bash
 ssh localhost -p 4241
 yes
 userpass
 ```
 then
-```
+```bash
 sudo apk add xorg-server xfce4 xfce4-terminal lightdm lightdm-gtk-greeter xf86-input-libinput elogind
 sudo setup-devd udev
 sudo rc-update add elogind
@@ -83,13 +83,13 @@ now go back to VM and it will show a little window for log in with your name :D 
 apk update
 ```
 #### 2. Install vim
-```
+```bash
 apk add vim
 ```
 This installs the standard Vim package.
 
 #### 3. Verify installation
-```
+```bash
 vim --version
 ```
 You should see something like:
@@ -100,11 +100,11 @@ VIM - Vi IMproved 9.x
 You need root privileges.
 
 Either switch to root:
-```
+```bash
 su
 ```
 or run:
-```
+```bash
 sudo apk add vim
 ```
 ### 4. neovim
@@ -120,20 +120,20 @@ sudo apk add vim
 - gcc / build tools (for some plugins)
 
 Let's install them:
-```
+```bash
 apk update
 apk add neovim git nodejs npm ripgrep fd build-base curl
 ```
 Optional but useful:
-```
+```bash
 apk add lazygit
 ```
 #### 2. Install LazyVim Starter Config
-```
+```bash
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 ```
 Then remove the git history:
-```
+```bash
 rm -rf ~/.config/nvim/.git
 ```
 This leaves you with a clean config.
@@ -141,7 +141,7 @@ This leaves you with a clean config.
 #### 3. Start Neovim
 
 Run:
-```
+```bash
 nvim
 ```
 LazyVim will automatically:
@@ -155,75 +155,75 @@ You will see plugins downloading.
 
 - First connect using ssh at terminal: ssh localhost -p 4241
 - Update Alpine:
-```
+```bash
   sudo apk update && sudo apk upgrade
 ```
 - then type:
-```
+```bash
 sudo vi /etc/apk/repositories
 ```
 - and uncomment first line and save and close.
 - install Docker and Docker Compose:
-```
+```bash
 sudo apk add docker docker-compose
 ```
 - run:
-```
+```bash
 sudo apk add --update docker openrc
 ```
 - To start the Docker daemon at boot, run:
-```
+```bash
 sudo rc-update add docker boot
 ```
 - to ensure the status is running:
-```
+```bash
 service docker status
 ```
 - If it is stoped type:
-```
+```bash
 sudo service docker start
 ```
 - and check again:
-```
+```bash
 service docker status
 ```
 Connecting to the Docker daemon through its socket requires you to add yourself to the docker group:
-```
+```bash
 sudo addgroup rhvidste docker
 ```
 - Installing Docker Compose:
-```
+```bash
 sudo apk add docker-cli-compose
 ```
 ### 6. Make
 #### 1. Install Make
 - Run:
-```
+```bash
 apk add make
 ```
 #### 2. If you get a permission error
 - You need root privileges.
 - Use either:
-```
+```bash
 sudo apk add make
 ```
 - or switch to root:
-```
+```bash
 su
 apk add make
 ```
 #### 3. Verify Installation
-```
+```bash
 make --version
 ```
 - You should see something like:
-```
+```bash
 GNU Make 4.x
 ```
 
 #### 4. Recommended (better for development)
 Most developers install the build tools package which includes make, gcc, and other compilation tools:
-```
+```bash
 apk add build-base
 ```
 This installs:
@@ -251,46 +251,46 @@ These provide:
 For Alpine, a very good choice is XFCE.
 
 Install it with:
-```
+```bash
 apk add xfce4 xfce4-terminal
 ```
 
 #### 3. Install a login manager (optional but recommended)
 This gives you a graphical login screen.
-```
+```bash
 apk add lightdm lightdm-gtk-greeter
 ```
 Enable it:
-```
+```bash
 rc-update add lightdm
 rc-service lightdm start
 ```
 #### 4. Enable DBus (required for desktops)
-```
+```bash
 apk add dbus
 rc-update add dbus
 rc-service dbus start
 ```
 #### 5. Start the GUI manually (if not using LightDM)
-```
+```bash
 startx
 ```
 #### 6. Install a web browser
 Example:
-```
+```bash
 apk add firefox
 ```
 or a lighter browser:
-```
+```bash
 apk add chromium
 ```
 #### 7. Reboot
-```
+```bash
 reboot
 ```
 You should now boot into the graphical desktop.
 if you need to boot it from the terminal just type:
-```
+```bash
 startx
 ```
 
@@ -326,16 +326,16 @@ WORDPRESS_ADMIN_EMAIL=admin@rhvidste.42.fr
 
 ## Configure Domain Name
 get the ip by typing:
-```
+```bash
 ip a
 ```
 then look for something like 
-```
+```bash
 inet 127.0.0.1/8 scope host lo
 ```
 
 Add the following entry to your **/etc/hosts** file:
-```
+```bash
 sudo nano /etc/hosts
 ```
 
@@ -346,7 +346,7 @@ Add this line (replace the ip with the one you found using Ip a):
 
 ## Build and Start the Infrastructure
 Run:
-```
+```bash
 make
 ```
 This command will:
@@ -376,20 +376,20 @@ Login using the credentials defined in the .env file.
 
 ## Stopping the Infrastructure
 To stop all containers:
-```
+```bash
 make down
 ```
 ## Cleaning the Project
 To remove containers, images, and volumes:
-```
+```bash
 make clean
 ```
 To completely reset the project:
-```
+```bash
 make fclean
 ```
 or to clean and reboot:
-```
+```bash
 make re
 ```
 ## Persistent Data
@@ -400,7 +400,7 @@ The project stores data in the following directories:
 ```
 
 ## To SSH into the host VIM
-```
+```bash
 root:
 ssh root@192.168.64.2 -p 4241
 
@@ -422,7 +422,7 @@ To:
 8443:443
 ```
 #### 2.
-```
+```bash
 docker exec -it wordpress sh
 cd /var/www/html
 wp option update siteurl 'https://rhvidste.42.fr:8443' --allow-root
