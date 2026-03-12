@@ -5,7 +5,7 @@ The project demonstrates how to design a small production-like infrastructure us
 HTTPS communication.
 
 ---
-## Project Overview
+# Project Overview
 This project deploys a WordPress website using three Docker containers:
 - NGINX – reverse proxy and HTTPS entrypoint
 - WordPress + PHP-FPM – application server
@@ -14,6 +14,23 @@ This project deploys a WordPress website using three Docker containers:
 Each service runs inside its own container and communicates through a **Docker network.**
 
 The infrastructure is orchestrated using **Docker Compose** and includes *persistent volumes* so that data survives container restarts.
+
+## Architecture
+```
+  Browser
+     │
+     │ HTTPS (TLS 1.2 / TLS 1.3)
+     ▼
+  NGINX container
+     │
+     │ FastCGI
+     ▼
+  WordPress container (PHP-FPM)
+     │
+     │ SQL
+     ▼
+  MariaDB container
+```
 
 ## Section
   This is a section
