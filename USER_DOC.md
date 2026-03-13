@@ -121,17 +121,6 @@ ssh localhost -p 4241
 yes
 userpass
 ```
-then
-```bash
-sudo apk add xorg-server xfce4 xfce4-terminal lightdm lightdm-gtk-greeter xf86-input-libinput elogind
-sudo setup-devd udev
-sudo rc-update add elogind
-sudo rc-update add lightdm
-sudo reboot
-```
-
-now go back to VM and it will show a little window for log in with your name :D Log in there and you will see a nice background with a little blue mouse in the middle :D Now if you close it and start again in VB, it will show this again.
-
 ### 4. vim
 #### 1. Update the package index
 ```
