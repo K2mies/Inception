@@ -37,7 +37,7 @@ After insallation do:
 - Click on Settings. Click on Storage. Choose alpine. Click blue disk next to Optical Drive and check if its alpine. Then click start.
 - When it opens go to view and choose scaled so you can change size of your window.
 
-#### Setting it update
+#### Setting it up
 Now when you installed it and started your virtual machine, we need to set it up:
 - when it open the screen it will ask for the local host login where you initially have to put root (if your mouse disapear, click control button under shift to unfreeze it)
 - now type :
