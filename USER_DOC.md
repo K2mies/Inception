@@ -48,7 +48,7 @@ setup-alpine
 
 - Hostname: 
 ```
-tmenkovi.42.fr
+rhvidste.42.fr
 ```
 - After that Interface will show and click enter and then again enter, then type: 
 ```
