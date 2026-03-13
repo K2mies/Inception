@@ -8,6 +8,7 @@ This document explains how to run and use the Inception WordPress infrastructure
 
 Before running the project it is recommended you have the following installed:
 
+- virtual machine
 - sudo
 - ssh
 - vim
@@ -22,8 +23,53 @@ You must also be able to modify your `/etc/hosts` file.
 ## Installations
 
 The following installations are on a virtual machine using Alpine.
+### 1. Vitrual Machine
+#### Instalation of virtual machine
+1. Instalation of VirtualBox: https://www.virtualbox.org/. It is needed for instalinsling the operating system we want to use. If you are on ARM or M1 type chips on mac you can use UTM as an alternative
+2. Download the latest alpine build from https://www.alpinelinux.org/downloads/ under standered download the x86_64 version 
 
-### 1. Install sudo
+After insallation do:
+- Open Virtual Box.
+- Click at New. Change name to be Inception. Change folder to be goinfre or your usb. ISO Image is the Alpine we downloaded. Type is Linux. Verion is Other Linux (64-bit). Then click on Next button.
+- Hardware: Base Memory is 2048MB, Processors is 1 CPU. Then click on Next button.
+- Virtual Hard disk: Disk Size is 30GB. Then click on Next button.
+- Summary: click Finish.
+- Click on Settings. Click on Storage. Choose alpine. Click blue disk next to Optical Drive and check if its alpine. Then click start.
+- When it opens go to view and choose scaled so you can change size of your window.
+
+#### Setting it update
+Now when you installed it and started your virtual machine, we need to set it up:
+- when it open the screen it will ask for the local host login where you initially have to put root (if your mouse disapear, click control button under shift to unfreeze it)
+- now type :
+```
+setup-alpine
+```
+- to configure Alpine Linux after installation It will first ask for keyboard layout. Choose us and then again us.
+
+- Hostname: 
+```
+tmenkovi.42.fr
+```
+- After that Interface will show and click enter and then again enter, then type: 
+```
+n
+```
+- Now write your password twice (and remember it :D)
+- Pick your timezone: Europe/. Then Helsinki.
+- Proxy: type none. Then enter 2 times.
+- User: rhvidste, Ross Hvidsten. Then new password 2 times. Then click enter 2 times.
+- Disk & Install: 
+```
+sda
+sys
+y
+```
+- Go to VB. Settings. Storage. Press alipne. then blue disk. Then remove disk and click OK.
+- Now go back to VM and type reboot.
+- Now login with root and root password.
+
+
+### 2. Install sudo
 ```
 vi /etc/apk/repositories
 ```
@@ -48,7 +94,7 @@ adduser rhvidste sudo
 ```
 Where rhvidste is my username and sudo is the group. Now you are good to go to exercise sudo writes with your user.
 
-### 2. Install ssh
+### 3. Install ssh
 
 ```bash
 sudo apk update
@@ -86,7 +132,7 @@ sudo reboot
 
 now go back to VM and it will show a little window for log in with your name :D Log in there and you will see a nice background with a little blue mouse in the middle :D Now if you close it and start again in VB, it will show this again.
 
-### 3. vim
+### 4. vim
 #### 1. Update the package index
 ```
 apk update
@@ -116,7 +162,7 @@ or run:
 ```bash
 sudo apk add vim
 ```
-### 4. neovim
+### 5. neovim
 
 #### 1. Install Required Dependencies
 LazyVim requires:
@@ -160,7 +206,7 @@ LazyVim will automatically:
 
 You will see plugins downloading.
 
-### 5. Docker / Docker Compose
+### 6. Docker / Docker Compose
 
 - First connect using ssh at terminal: ssh localhost -p 4241
 - Update Alpine:
@@ -204,7 +250,7 @@ sudo addgroup rhvidste docker
 ```bash
 sudo apk add docker-cli-compose
 ```
-### 6. Make
+### 7. Make
 #### 1. Install Make
 - Run:
 ```bash
@@ -245,7 +291,7 @@ This installs:
 
 Very useful for compiling programs or building Neovim plugins.
 
-### 7. GUI
+### 8. GUI
 #### 1. Install Xorg (the display server)
 First install the graphical system:
 ```bash
