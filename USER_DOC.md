@@ -394,6 +394,7 @@ Clone the repository:
 ```bash
 git clone <repository_url>
 cd inception
+```
 
 ## Configure Environment Variables
 The project uses an .env file located in:
