@@ -281,7 +281,7 @@ This installs:
 Very useful for compiling programs or building Neovim plugins.
 
 ### 8. GUI
-#### Setup desktop
+#### 1. Setup desktop
 Run these as root on the VM console:
 ```
 setup-xorg-base
@@ -324,7 +324,7 @@ So:
 - root → install/configure
 - rhvidste → run startxfce4
 
-#### Disable automatic GUI boot
+#### 2. Disable automatic GUI boot
 setup-desktop usually installs LightDM, which causes the login screen and auto GUI boot.
 To disable it:
 ```
@@ -345,7 +345,7 @@ or:
 ```
 startxfce4
 ```
-#### Make startx launch XFCE automatically
+#### 3. Make startx launch XFCE automatically
 Create a .xinitrc file:
 ```bash
 echo "exec startxfce4" > ~/.xinitrc
@@ -361,14 +361,14 @@ Check:
 rc-update show | grep lightdm
 ```
 
-#### Optional: completely remove the login manager
+#### 4. Optional: completely remove the login manager
 If you want to clean it out:
 ```
 apk del lightdm lightdm-gtk-greeter
 ```
 This keeps XFCE but removes the graphical login system.
 
-#### Install a web browser
+#### 5. Install a web browser
 Example:
 ```bash
 apk add firefox
