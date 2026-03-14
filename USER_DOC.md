@@ -281,45 +281,94 @@ This installs:
 Very useful for compiling programs or building Neovim plugins.
 
 ### 8. GUI
-#### 1. Install Xorg (the display server)
-First install the graphical system:
-```bash
+#### Setup desktop
+Run these as root on the VM console:
+```
+setup-xorg-base
+setup-desktop
+```
+When setup-desktop prompts you, choose:
+```
+xfce
+```
+Alpine says setup-desktop will install the chosen desktop, needed packages, a browser, and the services required to start a graphical desktop on boot.
+
+When it finishes, reboot:
+```
+reboot
+```
+If setup-desktop is not found
+
+Install the packages directly instead.
+
+As root:
+```
 apk update
-apk add xorg-server xf86-video-vesa xf86-input-libinput
+apk add xorg-server xinit xfce4 xfce4-terminal xf86-input-libinput dbus
 ```
-These provide:
-- Xorg display server
-- generic video driver
-- keyboard/mouse input
-#### 2. Install a lightweight desktop environment
-For Alpine, a very good choice is XFCE.
-
-Install it with:
-```bash
-apk add xfce4 xfce4-terminal
+Then enable DBus and reboot:
 ```
-
-#### 3. Install a login manager (optional but recommended)
-This gives you a graphical login screen.
-```bash
-apk add lightdm lightdm-gtk-greeter
-```
-Enable it:
-```bash
-rc-update add lightdm
-rc-service lightdm start
-```
-#### 4. Enable DBus (required for desktops)
-```bash
-apk add dbus
 rc-update add dbus
 rc-service dbus start
+reboot
 ```
-#### 5. Start the GUI manually (if not using LightDM)
-```bash
+After reboot, log in as rhvidste and run:
+```
+startxfce4
+or
 startx
 ```
-#### 6. Install a web browser
+#### Very important
+Install packages as root, but run the desktop as your normal user.
+So:
+- root → install/configure
+- rhvidste → run startxfce4
+
+#### Disable automatic GUI boot
+setup-desktop usually installs LightDM, which causes the login screen and auto GUI boot.
+To disable it:
+```
+rc-update del lightdm
+```
+Stop it immediately:
+```
+rc-service lightdm stop
+```
+Now Alpine will boot to the normal text console again.
+
+#### To start the Desktop manually
+Log in as your user and run:
+```
+startx
+```
+or:
+```
+startxfce4
+```
+#### Make startx launch XFCE automatically
+Create a .xinitrc file:
+```bash
+echo "exec startxfce4" > ~/.xinitrc
+```
+Now you can start the desktop with:
+```
+startx
+```
+
+#### Verify LightDM is disabled
+Check:
+```
+rc-update show | grep lightdm
+```
+
+#### Optional: completely remove the login manager
+If you want to clean it out:
+```
+apk del lightdm lightdm-gtk-greeter
+```
+This keeps XFCE but removes the graphical login system.
+
+#### Install a web browser
 Example:
 ```bash
 apk add firefox
