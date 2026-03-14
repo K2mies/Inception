@@ -20,11 +20,11 @@ Before running the project it is recommended you have the following installed:
 
 You must also be able to modify your `/etc/hosts` file.
 
-## Installations
+# Installations
 
 The following installations are on a virtual machine using Alpine.
-### 1. Vitrual Machine
-#### Instalation of virtual machine
+## 1. Vitrual Machine
+### Instalation of virtual machine
 1. Instalation of VirtualBox: https://www.virtualbox.org/. It is needed for instalinsling the operating system we want to use. If you are on ARM or M1 type chips on mac you can use UTM as an alternative
 2. Download the latest alpine build from https://www.alpinelinux.org/downloads/ under standered download the x86_64 version 
 
@@ -69,7 +69,7 @@ y
 - Now login with root and root password.
 
 
-### 2. Install sudo
+## 2. Install sudo
 ```
 vi /etc/apk/repositories
 ```
@@ -94,7 +94,7 @@ adduser rhvidste sudo
 ```
 Where rhvidste is my username and sudo is the group. Now you are good to go to exercise sudo writes with your user.
 
-### 3. Install ssh
+## 3. Install ssh
 
 ```bash
 sudo apk update
@@ -121,7 +121,7 @@ ssh localhost -p 4241
 yes
 userpass
 ```
-### 4. vim
+## 4. vim
 #### 1. Update the package index
 ```
 apk update
@@ -151,7 +151,7 @@ or run:
 ```bash
 sudo apk add vim
 ```
-### 5. neovim
+## 5. neovim
 
 #### 1. Install Required Dependencies
 LazyVim requires:
@@ -195,7 +195,7 @@ LazyVim will automatically:
 
 You will see plugins downloading.
 
-### 6. Docker / Docker Compose
+## 6. Docker / Docker Compose
 
 - First connect using ssh at terminal: ssh localhost -p 4241
 - Update Alpine:
@@ -239,7 +239,7 @@ sudo addgroup rhvidste docker
 ```bash
 sudo apk add docker-cli-compose
 ```
-### 7. Make
+## 7. Make
 #### 1. Install Make
 - Run:
 ```bash
@@ -280,7 +280,7 @@ This installs:
 
 Very useful for compiling programs or building Neovim plugins.
 
-### 8. GUI
+## 8. GUI
 #### 1. Setup desktop
 Run these as root on the VM console:
 ```
