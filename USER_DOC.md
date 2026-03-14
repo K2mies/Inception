@@ -31,7 +31,7 @@ The following installations are on a virtual machine using Alpine.
 After insallation do:
 - Open Virtual Box.
 - Click at New. Change name to be Inception. Change folder to be goinfre or your usb. ISO Image is the Alpine we downloaded. Type is Linux. Verion is Other Linux (64-bit). Then click on Next button.
-- Hardware: Base Memory is 2048MB, Processors is 1 CPU. Then click on Next button.
+- Hardware: Base Memory is 4096MB, Processors is 2 CPU. Then click on Next button.
 - Virtual Hard disk: Disk Size is 30GB. Then click on Next button.
 - Summary: click Finish.
 - Click on Settings. Click on Storage. Choose alpine. Click blue disk next to Optical Drive and check if its alpine. Then click start.
