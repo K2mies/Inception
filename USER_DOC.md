@@ -281,6 +281,85 @@ This installs:
 Very useful for compiling programs or building Neovim plugins.
 
 ### 8. GUI
+
+## lightweight Install (optional but will run faster on older machines)
+#### 1. run this command
+ssh in so you can copy and paste this:
+```
+apk add \
+xorg-server \
+xinit \
+xauth \
+xfce4 \
+xfce4-terminal \
+xfdesktop \
+xfwm4 \
+thunar \
+xfconf \
+dbus \
+dbus-x11 \
+eudev \
+mesa \
+mesa-dri-gallium \
+mesa-egl \
+mesa-gbm \
+mesa-gl \
+mesa-gles \
+xf86-input-libinput \
+xf86-video-fbdev
+```
+#### 2. enable the services that matter
+
+```
+rc-update add dbus
+rc-service dbus start
+
+rc-update add cgroups
+rc-service cgroups start
+
+rc-update add udev
+rc-service udev start
+```
+If udev doesn’t exist as a service name on that install, run:
+```
+rc-update add udev-init-scripts
+rc-service udev-init-scripts start
+```
+
+#### 3. reate the XFCE startup file as your user
+```bash
+echo "exec startxfce4" > ~/.xinitrc
+```
+
+#### 4. Fix for mouse input problems
+- On the VM, as root, run:
+```
+apk add eudev eudev-openrc udev-init-scripts udev-init-scripts-openrc libinput xf86-input-libinput
+```
+- Then enable and start the services:
+```
+rc-update add devfs sysinit
+rc-update add dmesg sysinit
+rc-update add mdev sysinit
+rc-update add hwdrivers sysinit
+rc-update add udev sysinit
+rc-update add udev-trigger sysinit
+rc-update add udev-settle sysinit
+rc-service udev start
+rc-service udev-trigger start
+rc-service udev-settle start
+```
+- Then reboot
+```
+reboot
+```
+#### 5. After Reboot
+Start the GUI again from the VM console:
+```
+startx
+```
+
+## Heavyweight Install
 #### 1. Setup desktop
 Run these as root on the VM console:
 ```
