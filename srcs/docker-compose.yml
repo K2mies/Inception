@@ -32,7 +32,8 @@ services:
                     "mariadb-admin
                     ping
                     --protocol=tcp
-                    --host=127.0.0.1
+                    --host=localhost
+                    --port=3306
                     -uroot
                     -p$MYSQL_ROOT_PASSWORD 
                     || exit 1" ]

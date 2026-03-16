@@ -8,11 +8,11 @@ chown -R mysql:mysql /run/mysqld
 chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-	echo "==> Initializing MariaDB system tables"
-	mariadb-install-db --basedir=/usr --user=mysql --datadir=/var/lib/mysql >/dev/null
+  echo "==> Initializing MariaDB system tables"
+  mariadb-install-db --basedir=/usr --user=mysql --datadir=/var/lib/mysql >/dev/null
 
-	echo "==> Creating WordPress database and user..."
-	mysqld --user=mysql --bootstrap << EOF
+  echo "==> Creating WordPress database and user..."
+  mysqld --user=mysql --bootstrap <<EOF
 
 
 USE mysql;
@@ -25,7 +25,7 @@ FLUSH PRIVILEGES;
 EOF
 
 else
-	echo "==> MariaDB is already installed. Database and Users are configured."
+  echo "==> MariaDB is already installed. Database and Users are configured."
 fi
 
 echo "==> Starting MariaDB server..."
