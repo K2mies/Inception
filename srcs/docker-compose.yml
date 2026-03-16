@@ -1,5 +1,3 @@
-version: "3.22.3"
-
 volumes:
   mariadb:
     name:         mariadb
