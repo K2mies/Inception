@@ -572,7 +572,7 @@ The project stores data in the following directories:
 /home/<login>/data/wordpress
 ```
 
-## To SSH into the host VIM
+## To SSH into the host
 ```bash
 root:
 ssh root@192.168.64.2 -p 4241
@@ -582,6 +582,7 @@ ssh rhvidste@192.168.64.2 -p 4241
 ```
 
 ## to change the port manually
+# NGINX PORT
 ### Method 1. ( partial change )
 #### 1.
 - Inside the docker-compose.yml 
@@ -624,6 +625,46 @@ wp option update siteurl 'https://rhvidste.42.fr:8443' --allow-root
 wp option update home 'https://rhvidste.42.fr:8443' --allow-root
 exit
 ```
+
+# MARIADB PORT
+- Docker file:
+```
+EXPOSE:4306 
+```
+- config file:
+```
+port = 4306
+```
+- Then in wordpress script:
+```
+mariadb-admin ping --protocol=tcp --host=mariadb --port=4306 -u $WORDPRESS_DATABASE_USER --password=$WORDPRESS_DATABASE_USER_PASSWORD --wait=300
+
+
+--dbhost=mariadb:4306 \
+```
+
+- Then in the mariadb health check in docker-compose.yml:
+```
+ --port=4306
+```
+
+# WORDPRESS PORT
+
+-in the Docker file for wordpress:
+```
+EXPOSE: 8000
+```
+
+in www.conf change:
+```
+listen = 8000
+```
+
+- in nginx conf:
+```
+fastcgi pass: wordpress:8000
+```
+
 
 
 
