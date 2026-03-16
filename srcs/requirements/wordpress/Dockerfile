@@ -21,5 +21,6 @@ RUN	chmod +x /usr/local/bin/wordpress-script.sh
 RUN	adduser -D -H -s /sbin/nologin -g www-data -G www-data www-data
 
 EXPOSE	9000
+#EXPOSE  8000
 
 CMD	["/usr/local/bin/wordpress-script.sh"]
