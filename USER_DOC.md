@@ -670,7 +670,16 @@ fastcgi pass: wordpress:8000
 - tick auto-mount and make permanent
 - restart vm
 
+# Check Connecting
 
+- to check domain cannot connect 
+```
+curl -I http://rhvidste.42.fr --insecure 
+```
+- to check certificate is installed and running
+```
+curl -Iv https://rhvidste.42.fr --insecure
+```
 
 
 
