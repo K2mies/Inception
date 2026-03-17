@@ -207,9 +207,9 @@ You will see plugins downloading.
 sudo vi /etc/apk/repositories
 ```
 - and uncomment first line and save and close.
-- install Docker and Docker Compose:
+- Installing Docker Compose:
 ```bash
-sudo apk add docker docker-compose
+sudo apk add docker docker-cli-compose
 ```
 - run:
 ```bash
@@ -234,10 +234,6 @@ service docker status
 Connecting to the Docker daemon through its socket requires you to add yourself to the docker group:
 ```bash
 sudo addgroup rhvidste docker
-```
-- Installing Docker Compose:
-```bash
-sudo apk add docker-cli-compose
 ```
 ## 7. Make
 #### 1. Install Make
