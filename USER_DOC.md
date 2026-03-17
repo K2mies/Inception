@@ -661,6 +661,15 @@ listen = 8000
 fastcgi pass: wordpress:8000
 ```
 
+# Shared folder
+- this is nececarey because inside the virtual machine you might not have a ssh key set up for vogsphere
+- in the virtual machine create a shared folder on the host machine and then in mount point put:
+```
+/mnt/shared
+```
+- tick auto-mount and make permanent
+- restart vm
+
 
 
 
